@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- * security.xml * * Copyright (C) 2018 Universidad de Sevilla * * The 
+	use of this project is hereby constrained to the conditions of the * TDG 
+	Licence, a copy of which you may download from * http://www.tdg-seville.info/License.html -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd		
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
+    ">
+
+	<!-- Security infrastructure -->
+
+	<bean id="loginService" class="security.LoginService" />
+
+	<bean id="passwordEncoder"
+		class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />
+
+	<!-- Access control -->
+
+	<security:http auto-config="true" use-expressions="true">
+		<security:intercept-url pattern="/"
+			access="permitAll" />
+		
+		<security:intercept-url pattern="/conference/search.do"
+			access="permitAll" />
+
+		<security:intercept-url pattern="/favicon.ico"
+			access="permitAll" />
+		<security:intercept-url pattern="/images/**"
+			access="permitAll" />
+		<security:intercept-url pattern="/scripts/**"
+			access="permitAll" />
+		<security:intercept-url pattern="/styles/**"
+			access="permitAll" />
+		<security:intercept-url pattern="/conference/comment/**"
+			access="permitAll" />
+		<security:intercept-url pattern="/panel/comment/**"
+			access="permitAll" />
+		<security:intercept-url pattern="/tutorial/comment/**"
+			access="permitAll" />
+		<security:intercept-url pattern="/presentation/comment/**"
+			access="permitAll" />
+
+		<security:intercept-url
+			pattern="/views/misc/index.jsp" access="permitAll" />
+
+		<security:intercept-url
+			pattern="/security/login.do" access="permitAll" />
+		<security:intercept-url
+			pattern="/security/loginFailure.do" access="permitAll" />
+
+		<security:intercept-url
+			pattern="/welcome/index.do" access="permitAll" />
+			
+		<security:intercept-url pattern="/message/list.do"
+			access="isAuthenticated()" />
+			
+		<security:intercept-url pattern="/message/listByTopic.do"
+			access="isAuthenticated()" />
+			
+		<security:intercept-url pattern="/message/listBySender.do"
+			access="isAuthenticated()" />
+			
+		<security:intercept-url pattern="/message/listByRecipient.do"
+			access="isAuthenticated()" />
+			
+		<security:intercept-url pattern="/message/show.do"
+			access="isAuthenticated()" />
+		<security:intercept-url pattern="/message/delete.do"
+			access="isAuthenticated()" />
+		<security:intercept-url pattern="/message/create.do"
+			access="isAuthenticated()" />
+		<security:intercept-url pattern="/message/edit.do"
+			access="isAuthenticated()" />
+			
+		<security:intercept-url
+			pattern="/actor/edit.do"
+			access="isAuthenticated()" />
+		<security:intercept-url
+			pattern="/actor/show.do"
+			access="isAuthenticated()" />
+			
+		<security:intercept-url
+			pattern="/message/administrator/*"
+			access="hasRole('ADMINISTRATOR')" />
+			
+		<security:intercept-url
+			pattern="/submission/administrator/assign.do"
+			access="hasRole('ADMINISTRATOR')" />
+			
+			
+		<security:intercept-url
+			pattern="/configuration/administrator/setup.do"
+			access="hasRole('ADMINISTRATOR')" />
+		
+		<security:intercept-url
+			pattern="/presentation/administrator/delete.do"
+			access="hasRole('ADMINISTRATOR')" />
+			
+		<security:intercept-url
+			pattern="/presentation/administrator/list.do"
+			access="hasRole('ADMINISTRATOR')" />
+			
+		<security:intercept-url
+			pattern="/presentation/administrator/create.do"
+			access="hasRole('ADMINISTRATOR')" />
+		
+		<security:intercept-url
+			pattern="/presentation/administrator/edit.do"
+			access="hasRole('ADMINISTRATOR')" />
+				
+		<security:intercept-url
+			pattern="/panel/administrator/create.do"
+			access="hasRole('ADMINISTRATOR')" />
+		
+		<security:intercept-url
+			pattern="/panel/administrator/edit.do"
+			access="hasRole('ADMINISTRATOR')" />
+			
+		<security:intercept-url
+			pattern="/conference/administrator/show.do"
+			access="hasRole('ADMINISTRATOR')" />
+		<security:intercept-url
+			pattern="/conference/administrator/decision.do"
+			access="hasRole('ADMINISTRATOR')" />
+			
+		<security:intercept-url
+			pattern="/submission/reviewer/showReviewer.do"
+			access="hasRole('REVIEWER')" />
+			
+		<security:intercept-url
+			pattern="/conference/administrator/list.do"
+			access="hasRole('ADMINISTRATOR')" />
+			
+		<security:intercept-url
+			pattern="/conference/administrator/edit.do"
+			access="hasRole('ADMINISTRATOR')" />
+			
+		<security:intercept-url
+			pattern="/conference/administrator/create.do"
+			access="hasRole('ADMINISTRATOR')" />
+		
+		<security:intercept-url pattern="/finder/author/**"
+			access="hasRole('AUTHOR')" />
+			
+		<security:intercept-url pattern="/registration/author/create.do"
+			access="hasRole('AUTHOR')" />
+			
+		<security:intercept-url pattern="/registration/author/list.do"
+			access="hasRole('AUTHOR')" />
+			
+		<security:intercept-url pattern="/registration/author/show.do"
+			access="hasRole('AUTHOR')" />
+		
+		<security:intercept-url pattern="/submission/author/list.do"
+			access="hasRole('AUTHOR')" />
+	
+		<security:intercept-url pattern="/submission/author/show.do"
+			access="hasRole('AUTHOR')" />
+			
+		<security:intercept-url pattern="/submission/author/edit.do"
+			access="hasRole('AUTHOR')" />
+			
+		<security:intercept-url pattern="/submission/author/upload.do"
+			access="hasRole('AUTHOR')" />
+			
+		<security:intercept-url pattern="/report/author/**"
+			access="hasRole('AUTHOR')" />
+			
+		<security:intercept-url pattern="/panel/administrator/list.do"
+			access="hasRole('ADMINISTRATOR')" />
+			
+		<security:intercept-url pattern="/tutorial/administrator/**"
+			access="hasRole('ADMINISTRATOR')" />
+		
+		<security:intercept-url pattern="/section/administrator/**"
+			access="hasRole('ADMINISTRATOR')" />
+			
+		<security:intercept-url pattern="/topic/administrator/**"
+			access="hasRole('ADMINISTRATOR')" />
+			
+		<security:intercept-url pattern="/category/administrator/**"
+			access="hasRole('ADMINISTRATOR')" />
+			
+		<security:intercept-url pattern="/stats/administrator/**"
+			access="hasRole('ADMINISTRATOR')" />
+			
+		<security:intercept-url pattern="/report/reviewer/**"
+			access="hasRole('REVIEWER')" />
+
+		<security:form-login
+			login-page="/security/login.do" password-parameter="password"
+			username-parameter="username"
+			authentication-failure-url="/security/loginFailure.do" />
+
+		<security:logout logout-success-url="/"
+			invalidate-session="true" />
+			
+		<security:intercept-url pattern="sponsorship/sponsor/list.do"
+			access="hasRole('SPONSOR')" />
+			
+		
+		
+		
+	</security:http>
+
+</beans>

@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ * PopulateDatabase.xml
+ *
+ * Copyright (C) 2018 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+	
+	<!-- User accounts -->
+
+	<bean id="userAccount1" class="security.UserAccount">
+		<property name="username" value="admin" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMINISTRATOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Other domain beans come here -->	
+	
+	<bean id="admin" class="domain.Administrator">
+		<property name="address" value="c/ Marcelo Spínola nº1" />
+		<property name="email" value="admin@" />
+		<property name="middleName" value="F" />
+		<property name="name" value="John" />
+		<property name="phone" value="654321098" />
+		<property name="surname" value="Kennedy" />
+		<property name="photo"
+			value="https://upload.wikimedia.org/wikipedia/commons/5/5e/John_F._Kennedy%2C_White_House_photo_portrait%2C_looking_up.jpg" />
+		<property name="userAccount" ref="userAccount1" />
+	</bean>
+	
+	<!-- Topics -->
+	<bean id="topic1" class="domain.Topic">
+		<property name="name" value="INQUIRY" />
+		<property name="nameEs" value="INVESTIGACION" />
+	</bean>
+	<bean id="topic2" class="domain.Topic">
+		<property name="name" value="REBUTTAL" />
+		<property name="nameEs" value="REFUTACION" />
+	</bean>
+	<bean id="topic3" class="domain.Topic">
+		<property name="name" value="REGISTRATION" />
+		<property name="nameEs" value="REGISTRO" />
+	</bean>
+	<bean id="topic4" class="domain.Topic">
+		<property name="name" value="TOPICS" />
+		<property name="nameEs" value="TOPICOS" />
+	</bean>
+	<bean id="topic5" class="domain.Topic">
+		<property name="name" value="OTHER" />
+		<property name="nameEs" value="OTROS" />
+	</bean>
+	
+		<!-- Categories -->
+
+
+	<bean id="category1" class="domain.Category">
+		<property name="name" value="CONFERENCE" />
+		<property name="nameEs" value="CONFERENCIA" />
+		<property name="root" value="true" />
+	</bean>
+	
+	<bean id="category2" class="domain.Category">
+		<property name="name" value="Computer Science" />
+		<property name="nameEs" value="Informatica" />
+		<property name="parent" ref="category1" />
+		<property name="root" value="false" />
+		
+	</bean>
+	
+	<bean id="category3" class="domain.Category">
+		<property name="name" value="Artificial Intelligence" />
+		<property name="nameEs" value="Inteligencia Artificial" />
+		<property name="parent" ref="category2" />
+		<property name="root" value="false" />
+		
+	</bean>
+	
+	<bean id="category4" class="domain.Category">
+		<property name="name" value="Deep Learning" />
+		<property name="nameEs" value="Aprendizaje profundo" />
+			<property name="parent" ref="category3" />
+			<property name="root" value="false" />
+		
+	</bean>
+	
+	<bean id="category5" class="domain.Category">
+		<property name="name" value="Instance-Based learning" />
+		<property name="nameEs" value="Aprendizaje basado en instancia" />
+			<property name="parent" ref="category3" />
+			<property name="root" value="false" />
+		
+	</bean>
+	
+	<bean id="category6" class="domain.Category">
+		<property name="name" value="Regression " />
+		<property name="nameEs" value="Regresion" />
+			<property name="parent" ref="category3" />
+			<property name="root" value="false" />
+		
+	</bean>
+	
+	<bean id="category7" class="domain.Category">
+		<property name="name" value="Software Engineering " />
+		<property name="nameEs" value="Ingenieria de Software" />
+			<property name="parent" ref="category1" />
+			<property name="root" value="false" />
+		
+	</bean>
+	
+	<bean id="category8" class="domain.Category">
+		<property name="name" value="Big Data" />
+		<property name="nameEs" value="Big Data" />
+			<property name="parent" ref="category7" />
+			<property name="root" value="false" />
+		
+	</bean>
+	
+	<bean id="category9" class="domain.Category">
+		<property name="name" value="Big Processing " />
+		<property name="nameEs" value="Big Processing" />
+			<property name="parent" ref="category7" />
+			<property name="root" value="false" />
+		
+	</bean>
+	
+	<bean id="category10" class="domain.Category">
+		<property name="name" value="Methods " />
+		<property name="nameEs" value="Metodos" />
+			<property name="parent" ref="category7" />
+			<property name="root" value="false" />
+		
+	</bean>
+	
+	<bean id="category11" class="domain.Category">
+		<property name="name" value="Tools " />
+		<property name="nameEs" value="Herramientas" />
+			<property name="parent" ref="category7" />
+			<property name="root" value="false" />
+		
+	</bean>
+
+	<bean id="category12" class="domain.Category">
+		<property name="name" value="Phisics " />
+		<property name="nameEs" value="Fisicas" />
+			<property name="parent" ref="category1" />
+			<property name="root" value="false" />
+		
+	</bean>
+	
+	<bean id="category13" class="domain.Category">
+		<property name="name" value="Cinematic " />
+		<property name="nameEs" value="Cinematica" />
+			<property name="parent" ref="category12" />
+			<property name="root" value="false" />
+		
+	</bean>
+	
+	<bean id="category14" class="domain.Category">
+		<property name="name" value="Electricity " />
+		<property name="nameEs" value="Electricidad" />
+			<property name="parent" ref="category12" />
+			<property name="root" value="false" />
+		
+	</bean>
+	
+	<bean id="category15" class="domain.Category">
+		<property name="name" value="Electronics " />
+		<property name="nameEs" value="Electronica" />
+			<property name="parent" ref="category12" />
+			<property name="root" value="false" />
+		
+	</bean>
+	
+	<bean id="category16" class="domain.Category">
+		<property name="name" value="Biology " />
+		<property name="nameEs" value="Biologia" />
+			<property name="parent" ref="category1" />
+			<property name="root" value="false" />
+		
+	</bean>
+	
+	<bean id="category17" class="domain.Category">
+		<property name="name" value="Animals " />
+		<property name="nameEs" value="Animales" />
+			<property name="parent" ref="category16" />
+			<property name="root" value="false" />
+		
+	</bean>
+	
+	<bean id="category18" class="domain.Category">
+		<property name="name" value="Plants " />
+		<property name="nameEs" value="Plantas" />
+			<property name="parent" ref="category16" />
+			<property name="root" value="false" />
+		
+	</bean>
+	
+	<bean id="category19" class="domain.Category">
+		<property name="name" value="Funghis " />
+		<property name="nameEs" value="Hongos" />
+			<property name="parent" ref="category16" />
+			<property name="root" value="false" />
+		
+	</bean>
+	<!-- Configuration -->
+	
+	<bean id="configurationParameters"
+		class="domain.ConfigurationParameters">
+		<property name="banner"
+			value="https://i.ibb.co/GVpZCtM/acme-conference.png" />
+		<property name="countryCode" value="+34" />
+		<property name="creditCardMakes">
+			<list>
+				<value>VISA</value>
+				<value>MASTER</value>
+				<value>DINNERS</value>
+				<value>AMEX</value>
+			</list>
+		</property>
+		<property name="message"
+			value="Welcome to Acme Conference! Your scientific event manager" />
+		<property name="messageEs"
+			value="¡Bienvenidos a Acme Conference! Su gestor de eventos científicos" />
+		<property name="systemName" value="Acme Conference" />
+		<property name="voidWords">
+			<list>
+				<value>a</value>
+				<value>after</value>
+				<value>all</value>
+				<value>also</value>
+				<value>am</value>
+				<value>an</value>
+				<value>and</value>
+				<value>are</value>
+				<value>be</value>
+				<value>because</value>
+				<value>but</value>
+				<value>can</value>
+				<value>cannot</value>
+				<value>do</value>
+				<value>else</value>
+				<value>every</value>
+				<value>for</value>
+				<value>get</value>
+				<value>have</value>
+				<value>has</value>
+				<value>i</value>
+				<value>is</value>
+				<value>it</value>
+				<value>just</value>
+				<value>let</value>
+				<value>most</value>
+				<value>not</value>
+				<value>of</value>
+				<value>rather</value>
+				<value>some</value>
+				<value>the</value>
+				<value>to</value>
+				<value>us</value>
+				<value>what</value>
+				<value>you</value>
+			</list>
+		</property>
+		<property name="voidWordsEs">
+			<list>
+				<value>a</value> 
+				<value>después</value>
+				<value>todo</value>
+				<value>también</value>
+				<value>soy</value>
+				<value>un</value>
+				<value>una</value>
+				<value>y</value>
+				<value>está </value>
+				<value>ser </value>
+				<value>porque</value>
+				<value>pero</value>
+				<value>puede</value>
+				<value>no puede</value>
+				<value>con</value>
+				<value>otra</value>
+				<value>cada</value>
+				<value>para</value>
+				<value>get</value>
+				<value>ha</value>
+				<value>yo</value>
+				<value>es</value>
+				<value>eso</value>
+				<value>just</value>
+				<value>let</value>
+				<value>más</value>
+				<value>no</value>
+				<value>of</value>
+				<value>reflejo</value>
+				<value>algunos</value>
+				<value>el</value>
+				<value>ella</value>
+				<value>nosotros</value>
+				<value>qué</value>
+				<value>usted</value>
+			</list>
+		</property>
+	</bean>
+</beans>
