@@ -276,8 +276,6 @@ public class ConferenceService {
 			final Conference confDB = this.findOne(conference.getId());
 			Assert.isTrue(confDB.getMode().equals("DRAFT"));
 		}
-		final Administrator adm = this.administratorService.findByPrincipal();
-		res.setAdministrator(adm);
 
 		this.validator.validate(res, binding);
 

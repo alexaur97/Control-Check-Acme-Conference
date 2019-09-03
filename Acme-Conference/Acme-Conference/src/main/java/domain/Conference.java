@@ -35,7 +35,6 @@ public class Conference extends DomainEntity {
 	private Double			fee;
 	private String			mode;
 
-	private Administrator	administrator;
 	private Category		category;
 
 
@@ -150,16 +149,6 @@ public class Conference extends DomainEntity {
 
 	public void setFee(final Double fee) {
 		this.fee = fee;
-	}
-
-	@NotNull
-	@ManyToOne(optional = false)
-	public Administrator getAdministrator() {
-		return this.administrator;
-	}
-
-	public void setAdministrator(final Administrator administrator) {
-		this.administrator = administrator;
 	}
 
 	@NotNull
