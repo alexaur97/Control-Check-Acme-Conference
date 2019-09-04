@@ -24,6 +24,30 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
+<!-- controlcheck -->
+
+<h3>
+<spring:message code="stats.conference.quolet" /> :
+</h3>
+
+<spring:message code="stats.conference.quolet.average" />
+:
+<jstl:out value="${numberQuolets[0][0]}" />
+<br />
+
+<spring:message code="stats.conference.quolet.stddev" />
+:
+<jstl:out value="${numberQuolets[0][1]}" />
+<br />
+
+<h4><spring:message code="stats.quolet.ratio"/>:</h4>
+<spring:message code="stats.published.quolet.ratio"/>: <jstl:out value="${publishedQuolets}"/>
+<br/>
+<spring:message code="stats.unpublished.quolet.ratio"/>: <jstl:out value="${unpublishedQuolets}"/>
+<br/>
+
+<!-- .............. -->
+
 <h3>
 <spring:message code="stats.conference.category" /> :
 </h3>

@@ -13,9 +13,9 @@
 	<!-- User accounts -->
 
 	<bean id="userAccount1" class="security.UserAccount">
-		<property name="username" value="admin1" />
+		<property name="username" value="administrator1" />
 		<property name="password"
-			value="e00cf25ad42683b3df678c61f42c6bda" />
+			value="d5cee333abe432891a0de57d0ee38713" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -169,9 +169,9 @@
 	</bean>
 	
 	<bean id="userAccount13" class="security.UserAccount">
-		<property name="username" value="admin2" />
+		<property name="username" value="administrator2" />
 		<property name="password"
-			value="c84258e9c39059a89ab77d846ddab909" />
+			value="82954495ff7e2a735ed2192c35b2cd00" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -818,23 +818,6 @@
 		<property name="title" value="Test Category-Conference" />
 		<property name="venue" value="Oh, look at this venue" />
 		<property name="mode" value="DRAFT" />
-	</bean>
-	
-	<bean id="conference8" class="domain.Conference">
-		<property name="acronym" value="DP" />
-		<property name="administrator" ref="admin1" />
-		<property name="cameraReady" value="09/10/2019 15:30" />
-		<property name="category" ref="category9" />
-		<property name="endDate" value="09/21/2019 20:00" />
-		<property name="fee" value="3.50" />
-		<property name="notification" value="09/10/2019 20:00" />
-		<property name="startDate" value="09/20/2019 18:30" />
-		<property name="submissionDeadline" value="09/01/2019 17:30" />
-		<property name="summary"
-			value="Summary, Restary, Multiplicary y Dividiry" />
-		<property name="title" value="prueba" />
-		<property name="venue" value="prueba" />
-		<property name="mode" value="FINAL" />
 	</bean>
 	
 	<!-- Categories -->
@@ -1724,7 +1707,7 @@
 		<property name="conference" ref="conference1" />
 		<property name="administrator" ref="admin1" />
 		<property name="ticker" value="XXXX" />
-		<property name="publicationMoment" value="3/9/2019 00:00" />
+		<property name="publicationMoment" value="9/3/2019 00:00" />
 		<property name="x1" value="TEST" />
 		<property name="x2" value="TEST" />
 		<property name="x3" value="TEST" />

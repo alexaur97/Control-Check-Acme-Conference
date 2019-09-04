@@ -2,9 +2,11 @@
 package controllers.administrator;
 
 import java.util.Collection;
-
+import java.util.Date;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
@@ -45,6 +47,13 @@ public class QuoletAdministratorController extends AbstractController {
 			result = new ModelAndView("quolet/list");
 			result.addObject("quolets",quolets);
 			result.addObject("myQuolets",myQuolets);
+			result.addObject("requestURI","quolet/administrator/list.do");
+			
+			final Date fecha = new Date();
+			final Long date2 = fecha.getTime();
+			
+			result.addObject("date2", date2);
+			
 		} catch (final Exception e) {
 			result = new ModelAndView("redirect:/#");
 		}
@@ -96,6 +105,10 @@ public class QuoletAdministratorController extends AbstractController {
 
 			result = new ModelAndView("quolet/show");
 			result.addObject("quolet",quolet);
+			
+			final Locale l = LocaleContextHolder.getLocale();
+			final String lang = l.getLanguage();
+			result.addObject("lang",lang);
 
 		} catch (final Throwable oops) {
 			result = new ModelAndView("redirect:/#");

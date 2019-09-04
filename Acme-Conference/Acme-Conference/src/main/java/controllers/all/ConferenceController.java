@@ -120,6 +120,7 @@ public class ConferenceController extends AbstractController {
 			result.addObject("bool", bool);
 			result.addObject("lang", lang);
 			result.addObject("sponsorship", sponsorship);
+			
 
 			final Collection<ConferenceComment> comments = this.conferenceCommentService.listCommentsByConference(conferenceId);
 			result.addObject("comments", comments);
@@ -129,6 +130,12 @@ public class ConferenceController extends AbstractController {
 			Collection<Quolet> quolets = this.QuoletService.findQuoletsByConference(conferenceId);
 			result.addObject("quolets",quolets);
 			result.addObject("requestURI","conference/show.do"); // ### OJO A ESTO
+			
+			final Date fecha = new Date();
+			final Long date2 = fecha.getTime();
+			
+			result.addObject("date2", date2);
+			result.addObject("lang", lang);
 			
 			// -------------------------------------------------------------------
 

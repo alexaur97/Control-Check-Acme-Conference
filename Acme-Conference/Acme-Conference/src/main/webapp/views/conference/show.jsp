@@ -51,23 +51,57 @@
 	</jstl:otherwise>
 </jstl:choose>
 
+<!-- controlcheck -->
+
 <h4>
 	<spring:message code="conference.quolets" />
 </h4>
 
 <display:table pagesize="5" name="quolets" id="quolet"
 	requestURI="${requestURI}" class="displaytag table">
-	<display:column titleKey="quolet.ticker" property="ticker" />
-	<display:column titleKey="quolet.mode" property="mode" />
-	<display:column titleKey="quolet.publicationMoment"
-		property="publicationMoment" />
-	<display:column titleKey="quolet.x1" property="x1" />
-	<display:column titleKey="quolet.show">
-		<acme:cancel
-			url="/quolet/show.do?quoletId=${quolet.id}"
-			code="quolet.show" />
-	</display:column>
+	
+	<jstl:if test="${((date2-quolet.publicationMoment.time)/86400000)<30}">
+	
+		<display:column style="color:red;" titleKey="quolet.ticker" property="ticker" />
+		<display:column style="color:red;" titleKey="quolet.mode" property="mode" />
+		<display:column style="color:red;" titleKey="quolet.x1" property="x1" />
+		<display:column titleKey="quolet.show">
+			<acme:cancel
+				url="/quolet/show.do?quoletId=${quolet.id}"
+				code="quolet.show" />
+		</display:column>
+	
+	</jstl:if>
+	
+	<jstl:if test="${((date2-quolet.publicationMoment.time)/86400000)>30 and ((date2-quolet.publicationMoment.time)/86400000)<60}">
+	
+		<display:column style="color:blue;" titleKey="quolet.ticker" property="ticker" />
+		<display:column style="color:blue;" titleKey="quolet.mode" property="mode" />
+		<display:column style="color:blue;" titleKey="quolet.x1" property="x1" />
+		<display:column titleKey="quolet.show">
+			<acme:cancel
+				url="/quolet/show.do?quoletId=${quolet.id}"
+				code="quolet.show" />
+		</display:column>
+	
+	</jstl:if>
+	
+	<jstl:if test="${((date2-quolet.publicationMoment.time)/86400000)>60}">
+	
+		<display:column style="color:green;" titleKey="quolet.ticker" property="ticker" />
+		<display:column style="color:green;" titleKey="quolet.mode" property="mode" />
+		<display:column style="color:green;" titleKey="quolet.x1" property="x1" />
+		<display:column titleKey="quolet.show">
+			<acme:cancel
+				url="/quolet/show.do?quoletId=${quolet.id}"
+				code="quolet.show" />
+		</display:column>
+	
+	</jstl:if>
+	
 </display:table>
+
+<!-- ............. -->
 
 <jstl:choose>
 	<jstl:when test="${empty sponsorship}">

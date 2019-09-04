@@ -30,23 +30,64 @@
 
 <display:table pagesize="5" name="quolets" id="quolet"
 	requestURI="${requestURI}" class="displaytag table">
-	<display:column titleKey="quolet.ticker" property="ticker" />
-	<display:column titleKey="quolet.mode" property="mode" />
-	<display:column titleKey="quolet.publicationMoment"
-		property="publicationMoment" />
-	<display:column titleKey="quolet.x1" property="x1" />
-	<display:column titleKey="quolet.show">
-		<acme:cancel
-			url="/quolet/administrator/show.do?quoletId=${quolet.id}"
-			code="quolet.show" />
-	</display:column>
-	<display:column titleKey="quolet.edit">
-	<jstl:if test="${quolet.mode eq 'DRAFT'}">
-		<acme:cancel
-			url="/quolet/administrator/edit.do?quoletId=${quolet.id}"
-			code="quolet.edit" />
+	
+		<jstl:if test="${((date2-quolet.publicationMoment.time)/86400000)<30}">
+	
+		<display:column style="color:red;" titleKey="quolet.ticker" property="ticker" />
+		<display:column style="color:red;" titleKey="quolet.mode" property="mode" />
+		<display:column style="color:red;" titleKey="quolet.x1" property="x1" />
+		<display:column titleKey="quolet.show">
+			<acme:cancel
+				url="/quolet/administrator/show.do?quoletId=${quolet.id}"
+				code="quolet.show" />
+		</display:column>
+		<display:column titleKey="quolet.edit">
+			<jstl:if test="${quolet.mode eq 'DRAFT'}">
+				<acme:cancel
+					url="/quolet/administrator/edit.do?quoletId=${quolet.id}"
+					code="quolet.edit" />
+			</jstl:if>
+		</display:column>
 	</jstl:if>
-	</display:column>
+	
+	<jstl:if test="${((date2-quolet.publicationMoment.time)/86400000)>30 and ((date2-quolet.publicationMoment.time)/86400000)<60}">
+	
+		<display:column style="color:blue;" titleKey="quolet.ticker" property="ticker" />
+		<display:column style="color:blue;" titleKey="quolet.mode" property="mode" />
+		<display:column style="color:blue;" titleKey="quolet.x1" property="x1" />
+		<display:column titleKey="quolet.show">
+			<acme:cancel
+				url="/quolet/administrator/show.do?quoletId=${quolet.id}"
+				code="quolet.show" />
+		</display:column>
+		<display:column titleKey="quolet.edit">
+			<jstl:if test="${quolet.mode eq 'DRAFT'}">
+				<acme:cancel
+					url="/quolet/administrator/edit.do?quoletId=${quolet.id}"
+					code="quolet.edit" />
+			</jstl:if>
+		</display:column>	
+	</jstl:if>
+	
+	<jstl:if test="${((date2-quolet.publicationMoment.time)/86400000)>60}">
+	
+		<display:column style="color:green;" titleKey="quolet.ticker" property="ticker" />
+		<display:column style="color:green;" titleKey="quolet.mode" property="mode" />
+		<display:column style="color:green;" titleKey="quolet.x1" property="x1" />
+		<display:column titleKey="quolet.show">
+			<acme:cancel
+				url="/quolet/administrator/show.do?quoletId=${quolet.id}"
+				code="quolet.show" />
+		</display:column>
+		<display:column titleKey="quolet.edit">
+			<jstl:if test="${quolet.mode eq 'DRAFT'}">
+				<acme:cancel
+					url="/quolet/administrator/edit.do?quoletId=${quolet.id}"
+					code="quolet.edit" />
+			</jstl:if>
+		</display:column>	
+	</jstl:if>
+	
 </display:table>
 
 <h4>
@@ -55,23 +96,64 @@
 
 <display:table pagesize="5" name="myQuolets" id="myQuolet"
 	requestURI="${requestURI}" class="displaytag table">
-	<display:column titleKey="quolet.ticker" property="ticker" />
-	<display:column titleKey="quolet.mode" property="mode" />
-	<display:column titleKey="quolet.publicationMoment"
-		property="publicationMoment" />
-	<display:column titleKey="quolet.x1" property="x1" />
-	<display:column titleKey="quolet.show">
-		<acme:cancel
-			url="/quolet/administrator/show.do?quoletId=${myQuolet.id}"
-			code="quolet.show" />
-	</display:column>
-	<display:column titleKey="quolet.edit">
-	<jstl:if test="${myQuolet.mode eq 'DRAFT'}">
-		<acme:cancel
-			url="/quolet/administrator/edit.do?quoletId=${myQuolet.id}"
-			code="quolet.edit" />
+	
+			<jstl:if test="${((date2-myQuolet.publicationMoment.time)/86400000)<30}">
+	
+		<display:column style="color:red;" titleKey="quolet.ticker" property="ticker" />
+		<display:column style="color:red;" titleKey="quolet.mode" property="mode" />
+		<display:column style="color:red;" titleKey="quolet.x1" property="x1" />
+		<display:column titleKey="quolet.show">
+			<acme:cancel
+				url="/quolet/administrator/show.do?quoletId=${myQuolet.id}"
+				code="quolet.show" />
+		</display:column>
+		<display:column titleKey="quolet.edit">
+			<jstl:if test="${myQuolet.mode eq 'DRAFT'}">
+				<acme:cancel
+					url="/quolet/administrator/edit.do?quoletId=${myQuolet.id}"
+					code="quolet.edit" />
+			</jstl:if>
+		</display:column>
 	</jstl:if>
-	</display:column>
+	
+	<jstl:if test="${((date2-myQuolet.publicationMoment.time)/86400000)>30 and ((date2-myQuolet.publicationMoment.time)/86400000)<60}">
+	
+		<display:column style="color:blue;" titleKey="quolet.ticker" property="ticker" />
+		<display:column style="color:blue;" titleKey="quolet.mode" property="mode" />
+		<display:column style="color:blue;" titleKey="quolet.x1" property="x1" />
+		<display:column titleKey="quolet.show">
+			<acme:cancel
+				url="/quolet/administrator/show.do?quoletId=${myQuolet.id}"
+				code="quolet.show" />
+		</display:column>
+		<display:column titleKey="quolet.edit">
+			<jstl:if test="${myQuolet.mode eq 'DRAFT'}">
+				<acme:cancel
+					url="/quolet/administrator/edit.do?quoletId=${myQuolet.id}"
+					code="quolet.edit" />
+			</jstl:if>
+		</display:column>	
+	</jstl:if>
+	
+	<jstl:if test="${((date2-myQuolet.publicationMoment.time)/86400000)>60}">
+	
+		<display:column style="color:green;" titleKey="quolet.ticker" property="ticker" />
+		<display:column style="color:green;" titleKey="quolet.mode" property="mode" />
+		<display:column style="color:green;" titleKey="quolet.x1" property="x1" />
+		<display:column titleKey="quolet.show">
+			<acme:cancel
+				url="/quolet/administrator/show.do?quoletId=${myQuolet.id}"
+				code="quolet.show" />
+		</display:column>
+		<display:column titleKey="quolet.edit">
+			<jstl:if test="${myQuolet.mode eq 'DRAFT'}">
+				<acme:cancel
+					url="/quolet/administrator/edit.do?quoletId=${myQuolet.id}"
+					code="quolet.edit" />
+			</jstl:if>
+		</display:column>	
+	</jstl:if>
+	
 </display:table>
 
 <br>

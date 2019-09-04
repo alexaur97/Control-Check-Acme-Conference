@@ -2,8 +2,10 @@
 package controllers.all;
 
 import java.util.Collection;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +39,12 @@ public class QuoletController extends AbstractController {
 
 			result = new ModelAndView("quolet/show");
 			result.addObject("quolet",quolet);
+			
+			final Locale l = LocaleContextHolder.getLocale();
+			final String lang = l.getLanguage();
+			result.addObject("lang",lang);
+			
+			
 		} catch (final Throwable oops) {
 			result = new ModelAndView("redirect:/#");
 		}

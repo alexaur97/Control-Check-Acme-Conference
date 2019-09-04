@@ -7,9 +7,6 @@
  * TDG Licence, a copy of which you may download from 
  * http://www.tdg-seville.info/License.html
  --%>
-
-<%@page import="java.util.Date"%>
-<%@page import="java.text.SimpleDateFormat"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
@@ -21,29 +18,16 @@
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 
-	<acme:display code="quolet.ticker" path="${quolet.ticker}" />
-	<acme:display code="quolet.mode" path="${quolet.mode}" />
-	
-	<spring:message code="quolet.publicationMoment" />:
-	
-	<jstl:choose>
-	<jstl:when test="${lang eq 'en'}">
-	<fmt:formatDate type = "date" pattern = "yy/MM/dd HH:mm"
-         value = "${quolet.publicationMoment}" />
-     </jstl:when>
-    <jstl:otherwise>
-    	<fmt:formatDate type = "date" pattern = "dd-MM-yy HH:mm"
-         value = "${quolet.publicationMoment}" />
-    </jstl:otherwise>
-</jstl:choose>
-	
-	<acme:display code="quolet.x1" path="${quolet.x1}" />
-	<acme:display code="quolet.x2" path="${quolet.x2}" />
-	<acme:display code="quolet.x3" path="${quolet.x3}" />
+<acme:display code="section.title" path="${section.title}" />
+<acme:display code="section.summary" path="${section.summary}" />
+<spring:message code="section.pictures" />:
+<br/>
+<jstl:forEach items="${section.pictures}" var="x">
+	<img src="${x}"/>
+</jstl:forEach>
 
-	<acme:button code="quolet.conference" url="conference/show.do?conferenceId=${quolet.conference.id}"/>
-
+<acme:button code="section.tutorial" url="/conference/activity/tutorial/show.do?tutorialId=${section.tutorial.id}"/>

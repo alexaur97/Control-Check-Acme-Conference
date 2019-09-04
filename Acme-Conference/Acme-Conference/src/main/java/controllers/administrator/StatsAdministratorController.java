@@ -15,6 +15,7 @@ import services.ConferenceService;
 import services.PanelCommentService;
 import services.PaperService;
 import services.PresentationCommentService;
+import services.QuoletService;
 import services.RegistrationService;
 import services.SubmissionService;
 import services.TutorialCommentService;
@@ -25,28 +26,31 @@ import controllers.AbstractController;
 public class StatsAdministratorController extends AbstractController {
 
 	@Autowired
-	ConferenceService			conferenceService;
+	private ConferenceService			conferenceService;
 
 	@Autowired
-	ConferenceCommentService	conferenceCommentService;
+	private ConferenceCommentService	conferenceCommentService;
 
 	@Autowired
-	PresentationCommentService	presentationCommentService;
+	private PresentationCommentService	presentationCommentService;
 
 	@Autowired
-	PanelCommentService			panelCommentService;
+	private PanelCommentService			panelCommentService;
 
 	@Autowired
-	TutorialCommentService		tutorialCommentService;
+	private TutorialCommentService		tutorialCommentService;
 
 	@Autowired
-	SubmissionService			submissionService;
+	private SubmissionService			submissionService;
 
 	@Autowired
-	RegistrationService			registrationService;
+	private RegistrationService			registrationService;
 
 	@Autowired
-	PaperService				paperService;
+	private PaperService				paperService;
+	
+	@Autowired
+	private QuoletService				quoletService;
 
 
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
@@ -76,6 +80,17 @@ public class StatsAdministratorController extends AbstractController {
 			result.addObject("conferencesFee", conferencesFee);
 
 			result.addObject("requestURI", "/stats/administrator/display.do");
+			
+			
+			
+			final Collection<Double> numberQuolets = this.quoletService.statsNumberQuolet();
+			final Double publishedQuolets = this.quoletService.publishedRatio();
+			final Double unpublishedQuolets = this.quoletService.unpublishedRatio();
+			
+			result.addObject("numberQuolets", numberQuolets);
+			result.addObject("publishedQuolets", publishedQuolets);
+			result.addObject("unpublishedQuolets", unpublishedQuolets);
+			
 		} catch (final Exception e) {
 			result = new ModelAndView("redirect:/#");
 

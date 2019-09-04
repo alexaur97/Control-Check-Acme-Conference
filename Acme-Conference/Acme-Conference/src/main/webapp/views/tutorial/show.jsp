@@ -76,10 +76,13 @@
 			<acme:cancel
 				url="/section/administrator/edit.do?sectionId=${section.id}"
 				code="tutorial.section.edit" />
-
 		</display:column>
 	</security:authorize>
-
+	<display:column titleKey="tutorial.section.show">
+			<acme:cancel
+				url="/section/show.do?sectionId=${section.id}"
+				code="tutorial.section.show" />
+		</display:column>
 
 
 </display:table>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 
 import domain.Administrator;
 import domain.Quolet;
@@ -23,6 +24,9 @@ public class QuoletService {
 
 	@Autowired
 	private AdministratorService administratorService;
+	
+	@Autowired
+	private Validator			validator;
 
 	public Quolet create() {
 		return new Quolet();
@@ -54,6 +58,9 @@ public class QuoletService {
 			String ticker = this.generateTicker(moment);
 			result.setTicker(ticker);
 		}
+		
+		this.validator.validate(result, binding);
+		
 		return result;
 	}
 
@@ -97,6 +104,24 @@ public class QuoletService {
 
 	public Collection<Quolet> findQuoletsByConference(int conferenceId) {
 		return this.quoletRepository.findQuoletsByConference(conferenceId);
+	}
+
+	public Collection<Double> statsNumberQuolet() {
+		final Collection<Double> result = this.quoletRepository.statsNumberQuolets();
+		Assert.notNull(result);
+		return result;
+	}
+
+	public Double publishedRatio() {
+		final Double result = this.quoletRepository.publishedRatio();
+		Assert.notNull(result);
+		return result;
+	}
+
+	public Double unpublishedRatio() {
+		final Double result = this.quoletRepository.unpublishedRatio();
+		Assert.notNull(result);
+		return result;
 	}
 
 }

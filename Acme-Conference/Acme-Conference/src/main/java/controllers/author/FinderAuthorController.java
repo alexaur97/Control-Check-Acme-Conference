@@ -27,16 +27,13 @@ import domain.Finder;
 public class FinderAuthorController extends AbstractController {
 
 	@Autowired
-	AuthorService		authorService;
+	private AuthorService		authorService;
 
 	@Autowired
-	ConferenceService	positionService;
+	private FinderService		finderService;
 
 	@Autowired
-	FinderService		finderService;
-
-	@Autowired
-	CategoryService		categoryService;
+	private CategoryService		categoryService;
 
 
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
