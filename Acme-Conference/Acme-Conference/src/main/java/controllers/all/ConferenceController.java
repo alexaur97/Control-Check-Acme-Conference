@@ -16,11 +16,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.ConferenceCommentService;
 import services.ConferenceService;
+import services.QuoletService;
 import services.SponsorshipService;
 import services.SubmissionService;
 import controllers.AbstractController;
 import domain.Conference;
 import domain.ConferenceComment;
+import domain.Quolet;
 import domain.Sponsorship;
 import domain.Submission;
 
@@ -29,21 +31,22 @@ import domain.Submission;
 public class ConferenceController extends AbstractController {
 
 	@Autowired
-	private ConferenceService			conferenceService;
+	private ConferenceService conferenceService;
 	@Autowired
-	private SubmissionService			submissionService;
+	private SubmissionService submissionService;
 	@Autowired
-	private ConferenceCommentService	conferenceCommentService;
+	private ConferenceCommentService conferenceCommentService;
 	@Autowired
-	private SponsorshipService	sponsorshipService;
-
+	private SponsorshipService sponsorshipService;
+	@Autowired
+	private QuoletService QuoletService;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
 		ModelAndView result;
 		try {
 
-			//Solo aparecen las conferencias que no han pasado
+			// Solo aparecen las conferencias que no han pasado
 			final Collection<Conference> nextconferences = this.conferenceService.findNextConferences();
 			final Collection<Conference> pastConferences = this.conferenceService.findPastConference();
 			final Collection<Conference> runningConferences = this.conferenceService.findRunningConference();
@@ -73,6 +76,7 @@ public class ConferenceController extends AbstractController {
 		}
 		return result;
 	}
+
 	@RequestMapping(value = "/search", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(final Conference conference, final BindingResult binding) {
 		ModelAndView result;
@@ -86,6 +90,7 @@ public class ConferenceController extends AbstractController {
 		}
 		return result;
 	}
+
 	@RequestMapping(value = "/show", method = RequestMethod.GET)
 	public ModelAndView show(@RequestParam final int conferenceId) {
 		ModelAndView result;
@@ -118,6 +123,14 @@ public class ConferenceController extends AbstractController {
 
 			final Collection<ConferenceComment> comments = this.conferenceCommentService.listCommentsByConference(conferenceId);
 			result.addObject("comments", comments);
+			
+			// controlcheck ------------------------------------------------------
+			
+			Collection<Quolet> quolets = this.QuoletService.findQuoletsByConference(conferenceId);
+			result.addObject("quolets",quolets);
+			result.addObject("requestURI","conference/show.do"); // ### OJO A ESTO
+			
+			// -------------------------------------------------------------------
 
 		} catch (final Exception e) {
 			result = new ModelAndView("redirect:/#");

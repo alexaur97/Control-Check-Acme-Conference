@@ -23,6 +23,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Access(AccessType.PROPERTY)
 public class Conference extends DomainEntity {
 
+	private Administrator 	administrator;
+	private Category		category;
+	
 	private String			title;
 	private String			acronym;
 	private String			venue;
@@ -35,9 +38,17 @@ public class Conference extends DomainEntity {
 	private Double			fee;
 	private String			mode;
 
-	private Category		category;
+	@NotNull
+	@ManyToOne(optional = false)
+	public Administrator getAdministrator() {
+		return this.administrator;
+	}
 
+	public void setAdministrator(final Administrator administrator) {
+		this.administrator = administrator;
+	}
 
+	
 	@NotBlank
 	@Pattern(regexp = "^DRAFT|FINAL$")
 	@SafeHtml(whitelistType = WhiteListType.NONE)

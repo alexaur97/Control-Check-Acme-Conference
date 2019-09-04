@@ -13,9 +13,9 @@
 	<!-- User accounts -->
 
 	<bean id="userAccount1" class="security.UserAccount">
-		<property name="username" value="admin" />
+		<property name="username" value="admin1" />
 		<property name="password"
-			value="21232f297a57a5a743894a0e4a801fc3" />
+			value="e00cf25ad42683b3df678c61f42c6bda" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -168,6 +168,19 @@
 		</property>
 	</bean>
 	
+	<bean id="userAccount13" class="security.UserAccount">
+		<property name="username" value="admin2" />
+		<property name="password"
+			value="c84258e9c39059a89ab77d846ddab909" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMINISTRATOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
 
 	<bean id="configurationParameters"
 		class="domain.ConfigurationParameters">
@@ -271,10 +284,10 @@
 
 	<!-- Actors -->
 
-	<bean id="admin" class="domain.Administrator">
+	<bean id="admin1" class="domain.Administrator">
 		<property name="address"
 			value="1600 Pennsylvania Ave NW, Washington, DC 20500, USA" />
-		<property name="email" value="admin@" />
+		<property name="email" value="admin1@" />
 		<property name="middleName" value="F" />
 		<property name="name" value="John" />
 		<property name="phone" value="654321098" />
@@ -282,6 +295,17 @@
 		<property name="photo"
 			value="https://upload.wikimedia.org/wikipedia/commons/5/5e/John_F._Kennedy%2C_White_House_photo_portrait%2C_looking_up.jpg" />
 		<property name="userAccount" ref="userAccount1" />
+	</bean>
+	
+	<bean id="admin2" class="domain.Administrator">
+		<property name="address"
+			value="1600 Pennsylvania Ave NW, Washington, DC 20500, USA" />
+		<property name="email" value="admin2@" />
+		<property name="middleName" value="J" />
+		<property name="name" value="Michael" />
+		<property name="phone" value="654321098" />
+		<property name="surname" value="Fox" />
+		<property name="userAccount" ref="userAccount13" />
 	</bean>
 
 	<bean id="author1" class="domain.Author">
@@ -523,10 +547,10 @@
 			value="Jajajaja" />
 		<property name="moment" value="08/08/2018 00:54" />
 		<property name="recipient" ref="author1" />
-		<property name="sender" ref="admin" />
+		<property name="sender" ref="admin1" />
 		<property name="subject" value="Jajaja" />
 		<property name="copy" value="false" />
-		<property name="owner" ref="admin" />
+		<property name="owner" ref="admin1" />
 		<property name="spam" value="false" />
 		<property name="deleted" value="false" />
 		<property name="tags" value="" />
@@ -665,7 +689,7 @@
 			value="Jajajaja" />
 		<property name="moment" value="08/08/2018 00:54" />
 		<property name="recipient" ref="author1" />
-		<property name="sender" ref="admin" />
+		<property name="sender" ref="admin1" />
 		<property name="subject" value="Jajaja" />
 		<property name="copy" value="true" />
 		<property name="owner" ref="author1" />
@@ -678,6 +702,7 @@
 	<!-- Conferences -->
 
 	<bean id="conference1" class="domain.Conference">
+		<property name="administrator" ref="admin1" />
 		<property name="acronym" value="BAE" />
 		<property name="cameraReady" value="12/30/2019 15:30" />
 		<property name="category" ref="category1" />
@@ -695,6 +720,7 @@
 
 	<bean id="conference2" class="domain.Conference">
 		<property name="acronym" value="GF" />
+		<property name="administrator" ref="admin1" />
 		<property name="cameraReady" value="08/08/2019 15:30" />
 		<property name="category" ref="category1" />
 		<property name="endDate" value="12/30/2020 20:00" />
@@ -711,6 +737,7 @@
 
 	<bean id="conference3" class="domain.Conference">
 		<property name="acronym" value="TBC" />
+		<property name="administrator" ref="admin1" />
 		<property name="cameraReady" value="11/30/2019 21:30" />
 		<property name="category" ref="category4" />
 		<property name="endDate" value="12/31/2020 20:00" />
@@ -727,6 +754,7 @@
 
 	<bean id="conference4" class="domain.Conference">
 		<property name="acronym" value="PG19" />
+		<property name="administrator" ref="admin1" />
 		<property name="cameraReady" value="11/30/2019 21:30" />
 		<property name="category" ref="category1" />
 		<property name="endDate" value="12/30/2020 20:00" />
@@ -743,6 +771,7 @@
 
 	<bean id="conference5" class="domain.Conference">
 		<property name="acronym" value="TFG" />
+		<property name="administrator" ref="admin1" />
 		<property name="cameraReady" value="08/08/2019 15:30" />
 		<property name="category" ref="category3" />
 		<property name="endDate" value="12/30/2020 20:00" />
@@ -759,6 +788,7 @@
 
 	<bean id="conference6" class="domain.Conference">
 		<property name="acronym" value="MSB" />
+		<property name="administrator" ref="admin1" />
 		<property name="cameraReady" value="08/07/2019 21:30" />
 		<property name="category" ref="category6" />
 		<property name="endDate" value="12/30/2020 20:00" />
@@ -775,6 +805,7 @@
 
 	<bean id="conference7" class="domain.Conference">
 		<property name="acronym" value="OLS" />
+		<property name="administrator" ref="admin1" />
 		<property name="cameraReady" value="08/08/2019 15:30" />
 		<property name="category" ref="category9" />
 		<property name="endDate" value="08/20/2020 20:00" />
@@ -791,6 +822,7 @@
 	
 	<bean id="conference8" class="domain.Conference">
 		<property name="acronym" value="DP" />
+		<property name="administrator" ref="admin1" />
 		<property name="cameraReady" value="09/10/2019 15:30" />
 		<property name="category" ref="category9" />
 		<property name="endDate" value="09/21/2019 20:00" />
@@ -1686,5 +1718,50 @@
 		</property>
 	</bean>
 	
+	<!-- Quolets -->
+	
+	<bean id="TESTquolet1" class="domain.Quolet">
+		<property name="conference" ref="conference1" />
+		<property name="administrator" ref="admin1" />
+		<property name="ticker" value="XXXX" />
+		<property name="publicationMoment" value="3/9/2019 00:00" />
+		<property name="x1" value="TEST" />
+		<property name="x2" value="TEST" />
+		<property name="x3" value="TEST" />
+		<property name="mode" value="FINAL" />
+	</bean>
+	
+	<bean id="TESTquolet2" class="domain.Quolet">
+		<property name="conference" ref="conference1" />
+		<property name="administrator" ref="admin1" />
+		<property name="ticker" value="XXXX" />
+		<property name="publicationMoment" value="7/31/2019 00:00" />
+		<property name="x1" value="TEST" />
+		<property name="x2" value="TEST" />
+		<property name="x3" value="TEST" />
+		<property name="mode" value="DRAFT" />
+	</bean>
+	
+	<bean id="TESTquolet3" class="domain.Quolet">
+		<property name="conference" ref="conference1" />
+		<property name="administrator" ref="admin2" />
+		<property name="ticker" value="XXXX" />
+		<property name="publicationMoment" value="5/31/2019 00:00" />
+		<property name="x1" value="TEST" />
+		<property name="x2" value="TEST" />
+		<property name="x3" value="TEST" />
+		<property name="mode" value="FINAL" />
+	</bean>
+	
+	<bean id="TESTquolet4" class="domain.Quolet">
+		<property name="conference" ref="conference1" />
+		<property name="administrator" ref="admin2" />
+		<property name="ticker" value="XXXX" />
+		<property name="publicationMoment" value="5/30/2019 00:00" />
+		<property name="x1" value="TEST" />
+		<property name="x2" value="TEST" />
+		<property name="x3" value="TEST" />
+		<property name="mode" value="DRAFT" />
+	</bean>
 
 </beans>

@@ -51,6 +51,24 @@
 	</jstl:otherwise>
 </jstl:choose>
 
+<h4>
+	<spring:message code="conference.quolets" />
+</h4>
+
+<display:table pagesize="5" name="quolets" id="quolet"
+	requestURI="${requestURI}" class="displaytag table">
+	<display:column titleKey="quolet.ticker" property="ticker" />
+	<display:column titleKey="quolet.mode" property="mode" />
+	<display:column titleKey="quolet.publicationMoment"
+		property="publicationMoment" />
+	<display:column titleKey="quolet.x1" property="x1" />
+	<display:column titleKey="quolet.show">
+		<acme:cancel
+			url="/quolet/show.do?quoletId=${quolet.id}"
+			code="quolet.show" />
+	</display:column>
+</display:table>
+
 <jstl:choose>
 	<jstl:when test="${empty sponsorship}">
 		<h4>
@@ -140,3 +158,4 @@
 <acme:button
 	url="conference/comment/create.do?conferenceId=${conference.id}"
 	code="comment.write" />
+	

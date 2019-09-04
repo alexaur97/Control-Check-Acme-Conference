@@ -30,11 +30,25 @@
 		</property>
 	</bean>
 	
+	<bean id="userAccount2" class="security.UserAccount">
+		<property name="username" value="admin2" />
+		<property name="password"
+			value="c84258e9c39059a89ab77d846ddab909" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMINISTRATOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
 	<!-- Other domain beans come here -->	
 	
-	<bean id="admin" class="domain.Administrator">
-		<property name="address" value="c/ Marcelo Spínola nº1" />
-		<property name="email" value="admin@" />
+	<bean id="admin1" class="domain.Administrator">
+		<property name="address"
+			value="1600 Pennsylvania Ave NW, Washington, DC 20500, USA" />
+		<property name="email" value="admin1@" />
 		<property name="middleName" value="F" />
 		<property name="name" value="John" />
 		<property name="phone" value="654321098" />
@@ -44,7 +58,19 @@
 		<property name="userAccount" ref="userAccount1" />
 	</bean>
 	
+	<bean id="admin2" class="domain.Administrator">
+		<property name="address"
+			value="1600 Pennsylvania Ave NW, Washington, DC 20500, USA" />
+		<property name="email" value="admin2@" />
+		<property name="middleName" value="J" />
+		<property name="name" value="Michael" />
+		<property name="phone" value="654321098" />
+		<property name="surname" value="Fox" />
+		<property name="userAccount" ref="userAccount2" />
+	</bean>
+	
 	<!-- Topics -->
+	
 	<bean id="topic1" class="domain.Topic">
 		<property name="name" value="INQUIRY" />
 		<property name="nameEs" value="INVESTIGACION" />

@@ -49,6 +49,11 @@
 		<bean class="converters.StringToReportConverter" />
 		<bean class="converters.StringToTopicConverter" />
 		<bean class="converters.StringToSubmissionConverter" />
+		
+		<!-- controlcheck -->
+		
+		<bean class="converters.QuoletToStringConverter" />
+		<bean class="converters.StringToQuoletConverter" />
 
 	</util:list>
 	

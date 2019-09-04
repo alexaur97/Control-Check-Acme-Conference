@@ -49,6 +49,9 @@
 		<value>/views/paper/messages</value>
 		<value>/views/report/messages</value>
 		
+		<!-- controlcheck -->
+		<value>/views/quolet/messages</value>
+		
 	</util:list>
 
 </beans>

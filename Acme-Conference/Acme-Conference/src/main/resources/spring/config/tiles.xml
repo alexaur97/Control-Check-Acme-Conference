@@ -48,6 +48,9 @@
 		<value>/views/paper/tiles.xml</value>
 		<value>/views/report/tiles.xml</value>
 		
+		<!-- controlcheck -->
+		<value>/views/quolet/tiles.xml</value>
+		
 	</util:list>
 
 </beans>

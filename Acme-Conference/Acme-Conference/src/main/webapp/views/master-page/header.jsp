@@ -84,6 +84,13 @@
 
 			<li><a class="fNiv" href="category/administrator/list.do"><spring:message
 					code="master.page.listCategory" /></a></li>
+		
+		<!-- controlcheck -->
+		
+			<li><a class="fNiv" href="quolet/administrator/list.do"><spring:message
+					code="master.page.quolets" /></a></li>
+					
+		<!-- ............ -->
 		</security:authorize>
 
 	<security:authorize access="hasRole('REVIEWER')">
