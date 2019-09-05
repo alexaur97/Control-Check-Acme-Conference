@@ -27,23 +27,23 @@
 <!-- controlcheck -->
 
 <h3>
-<spring:message code="stats.conference.quolet" /> :
+<spring:message code="stats.conference.dusit" /> :
 </h3>
 
-<spring:message code="stats.conference.quolet.average" />
+<spring:message code="stats.conference.dusit.average" />
 :
-<jstl:out value="${numberQuolets[0][0]}" />
+<jstl:out value="${numberDusits[0][0]}" />
 <br />
 
-<spring:message code="stats.conference.quolet.stddev" />
+<spring:message code="stats.conference.dusit.stddev" />
 :
-<jstl:out value="${numberQuolets[0][1]}" />
+<jstl:out value="${numberDusits[0][1]}" />
 <br />
 
-<h4><spring:message code="stats.quolet.ratio"/>:</h4>
-<spring:message code="stats.published.quolet.ratio"/>: <jstl:out value="${publishedQuolets}"/>
+<h4><spring:message code="stats.dusit.ratio"/>:</h4>
+<spring:message code="stats.published.dusit.ratio"/>: <jstl:out value="${publishedDusits}"/>
 <br/>
-<spring:message code="stats.unpublished.quolet.ratio"/>: <jstl:out value="${unpublishedQuolets}"/>
+<spring:message code="stats.unpublished.dusit.ratio"/>: <jstl:out value="${unpublishedDusits}"/>
 <br/>
 
 <!-- .............. -->

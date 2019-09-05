@@ -52,8 +52,8 @@
 		
 		<!-- controlcheck -->
 		
-		<bean class="converters.QuoletToStringConverter" />
-		<bean class="converters.StringToQuoletConverter" />
+		<bean class="converters.DusitToStringConverter" />
+		<bean class="converters.StringToDusitConverter" />
 
 	</util:list>
 	

@@ -6,20 +6,20 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import repositories.QuoletRepository;
-import domain.Quolet;
+import repositories.DusitRepository;
+import domain.Dusit;
 
 @Component
 @Transactional
-public class StringToQuoletConverter implements Converter<String, Quolet> {
+public class StringToDusitConverter implements Converter<String, Dusit> {
 
 	@Autowired
-	QuoletRepository	quoletRepository;
+	DusitRepository	dusitRepository;
 
 
 	@Override
-	public Quolet convert(final String text) {
-		Quolet result;
+	public Dusit convert(final String text) {
+		Dusit result;
 		int id;
 
 		try {
@@ -27,7 +27,7 @@ public class StringToQuoletConverter implements Converter<String, Quolet> {
 				result = null;
 			else {
 				id = Integer.valueOf(text);
-				result = this.quoletRepository.findOne(id);
+				result = this.dusitRepository.findOne(id);
 			}
 		} catch (final Throwable oops) {
 			throw new IllegalArgumentException(oops);

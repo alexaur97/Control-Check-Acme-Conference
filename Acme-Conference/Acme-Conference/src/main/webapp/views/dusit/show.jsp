@@ -25,25 +25,26 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 
-	<acme:display code="quolet.ticker" path="${quolet.ticker}" />
-	<acme:display code="quolet.mode" path="${quolet.mode}" />
+	<acme:display code="dusit.ticker" path="${dusit.ticker}" />
+	<acme:display code="dusit.mode" path="${dusit.mode}" />
 	
-	<spring:message code="quolet.publicationMoment" />:
+	<spring:message code="dusit.publicationMoment" />:
 	
 	<jstl:choose>
 	<jstl:when test="${lang eq 'en'}">
 	<fmt:formatDate type = "date" pattern = "yy/MM/dd HH:mm"
-         value = "${quolet.publicationMoment}" />
+         value = "${dusit.publicationMoment}" />
      </jstl:when>
     <jstl:otherwise>
     	<fmt:formatDate type = "date" pattern = "dd-MM-yy HH:mm"
-         value = "${quolet.publicationMoment}" />
+         value = "${dusit.publicationMoment}" />
     </jstl:otherwise>
 </jstl:choose>
 	
-	<acme:display code="quolet.x1" path="${quolet.x1}" />
-	<acme:display code="quolet.x2" path="${quolet.x2}" />
-	<acme:display code="quolet.x3" path="${quolet.x3}" />
-
-	<acme:button code="quolet.conference" url="conference/show.do?conferenceId=${quolet.conference.id}"/>
+	<acme:display code="dusit.body" path="${dusit.body}" />
+	<spring:message code="dusit.picture" />:
+	<br/>
+	<img width="200" src="${dusit.picture}"/>
+	<br/>
+	<acme:button code="dusit.conference" url="conference/show.do?conferenceId=${dusit.conference.id}"/>
 

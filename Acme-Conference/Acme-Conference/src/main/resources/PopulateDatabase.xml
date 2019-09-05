@@ -1701,49 +1701,45 @@
 		</property>
 	</bean>
 	
-	<!-- Quolets -->
+	<!-- Dusits -->
 	
-	<bean id="TESTquolet1" class="domain.Quolet">
+	<bean id="TESTdusit1" class="domain.Dusit">
 		<property name="conference" ref="conference1" />
 		<property name="administrator" ref="admin1" />
-		<property name="ticker" value="XXXX" />
+		<property name="ticker" value="123456:19:09:03" />
 		<property name="publicationMoment" value="9/3/2019 00:00" />
-		<property name="x1" value="TEST" />
-		<property name="x2" value="TEST" />
-		<property name="x3" value="TEST" />
+		<property name="body" value="TEST" />
+		<property name="picture" value="http://www.deweblogvanhelmond.nl/wp-content/uploads/2016/06/Bliksem-boven-het-Havenplein-in-Helmond.jpg" />
 		<property name="mode" value="FINAL" />
 	</bean>
 	
-	<bean id="TESTquolet2" class="domain.Quolet">
+	<bean id="TESTdusit2" class="domain.Dusit">
 		<property name="conference" ref="conference1" />
 		<property name="administrator" ref="admin1" />
-		<property name="ticker" value="XXXX" />
+		<property name="ticker" value="123456:19:07:31" />
 		<property name="publicationMoment" value="7/31/2019 00:00" />
-		<property name="x1" value="TEST" />
-		<property name="x2" value="TEST" />
-		<property name="x3" value="TEST" />
+		<property name="body" value="TEST" />
+		<property name="picture" value="http://www.deweblogvanhelmond.nl/wp-content/uploads/2016/06/Bliksem-boven-het-Havenplein-in-Helmond.jpg" />
 		<property name="mode" value="DRAFT" />
 	</bean>
 	
-	<bean id="TESTquolet3" class="domain.Quolet">
+	<bean id="TESTdusit3" class="domain.Dusit">
 		<property name="conference" ref="conference1" />
 		<property name="administrator" ref="admin2" />
-		<property name="ticker" value="XXXX" />
+		<property name="ticker" value="123456:19:05:31" />
 		<property name="publicationMoment" value="5/31/2019 00:00" />
-		<property name="x1" value="TEST" />
-		<property name="x2" value="TEST" />
-		<property name="x3" value="TEST" />
+		<property name="body" value="TEST" />
+		<property name="picture" value="http://www.deweblogvanhelmond.nl/wp-content/uploads/2016/06/Bliksem-boven-het-Havenplein-in-Helmond.jpg" />
 		<property name="mode" value="FINAL" />
 	</bean>
 	
-	<bean id="TESTquolet4" class="domain.Quolet">
+	<bean id="TESTdusit4" class="domain.Dusit">
 		<property name="conference" ref="conference1" />
 		<property name="administrator" ref="admin2" />
-		<property name="ticker" value="XXXX" />
+		<property name="ticker" value="123456:19:05:30" />
 		<property name="publicationMoment" value="5/30/2019 00:00" />
-		<property name="x1" value="TEST" />
-		<property name="x2" value="TEST" />
-		<property name="x3" value="TEST" />
+		<property name="body" value="TEST" />
+		<property name="picture" value="http://www.deweblogvanhelmond.nl/wp-content/uploads/2016/06/Bliksem-boven-het-Havenplein-in-Helmond.jpg" />
 		<property name="mode" value="DRAFT" />
 	</bean>
 

@@ -1,5 +1,5 @@
 #./src/main/resources/Entities.map
-#Thu Sep 05 00:31:29 CEST 2019
+#Thu Sep 05 11:11:40 CEST 2019
 reviewer1=3360
 tutorial6=3445
 tutorial5=3444
@@ -50,10 +50,6 @@ section4=3455
 section3=3454
 section2=3453
 section1=3452
-TESTquolet4=3478
-TESTquolet3=3477
-TESTquolet2=3476
-TESTquolet1=3475
 topic5=3391
 topic4=3390
 topic3=3389
@@ -92,8 +88,12 @@ submission6=3463
 submission5=3462
 submission4=3461
 submission3=3460
+TESTdusit4=3478
 submission2=3459
+TESTdusit3=3477
 submission1=3458
+TESTdusit2=3476
+TESTdusit1=3475
 admin2=3356
 admin1=3355
 category9=3376

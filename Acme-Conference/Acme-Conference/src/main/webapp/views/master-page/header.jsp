@@ -87,8 +87,8 @@
 		
 		<!-- controlcheck -->
 		
-			<li><a class="fNiv" href="quolet/administrator/list.do"><spring:message
-					code="master.page.quolets" /></a></li>
+			<li><a class="fNiv" href="dusit/administrator/list.do"><spring:message
+					code="master.page.dusits" /></a></li>
 					
 		<!-- ............ -->
 		</security:authorize>

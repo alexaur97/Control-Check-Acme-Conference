@@ -18,19 +18,19 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.AdministratorService;
 import services.ConferenceService;
-import services.QuoletService;
+import services.DusitService;
 import controllers.AbstractController;
 import domain.Conference;
-import domain.Quolet;
+import domain.Dusit;
 
 @Controller
-@RequestMapping("/quolet/administrator")
-public class QuoletAdministratorController extends AbstractController {
+@RequestMapping("/dusit/administrator")
+public class DusitAdministratorController extends AbstractController {
 
 	// controlcheck -----------------------------------
 	
 	@Autowired
-	private QuoletService quoletService;
+	private DusitService dusitService;
 
 	@Autowired
 	private AdministratorService administratorService;
@@ -42,12 +42,12 @@ public class QuoletAdministratorController extends AbstractController {
 	public ModelAndView list() {
 		ModelAndView result;
 		try {
-			Collection<Quolet> myQuolets = this.quoletService.findQuoletsByPrincipal();
-			Collection<Quolet> quolets = this.quoletService.findAll();
-			result = new ModelAndView("quolet/list");
-			result.addObject("quolets",quolets);
-			result.addObject("myQuolets",myQuolets);
-			result.addObject("requestURI","quolet/administrator/list.do");
+			Collection<Dusit> myDusits = this.dusitService.findDusitsByPrincipal();
+			Collection<Dusit> dusits = this.dusitService.findAll();
+			result = new ModelAndView("dusit/list");
+			result.addObject("dusits",dusits);
+			result.addObject("myDusits",myDusits);
+			result.addObject("requestURI","dusit/administrator/list.do");
 			
 			final Date fecha = new Date();
 			final Long date2 = fecha.getTime();
@@ -67,8 +67,8 @@ public class QuoletAdministratorController extends AbstractController {
 
 			this.administratorService.findByPrincipal();
 
-			Quolet quolet = this.quoletService.create();
-			result = this.createEditModelAndView(quolet);
+			Dusit dusit = this.dusitService.create();
+			result = this.createEditModelAndView(dusit);
 
 		} catch (final Exception e) {
 			result = new ModelAndView("redirect:/#");
@@ -78,14 +78,14 @@ public class QuoletAdministratorController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam final int quoletId) {
+	public ModelAndView edit(@RequestParam final int dusitId) {
 
 		ModelAndView result;
 
 		try {
-			Quolet quolet = this.quoletService.findOne(quoletId);
-			Assert.isTrue(quolet.getMode().equals("DRAFT"));
-			result = this.createEditModelAndView(quolet);
+			Dusit dusit = this.dusitService.findOne(dusitId);
+			Assert.isTrue(dusit.getMode().equals("DRAFT"));
+			result = this.createEditModelAndView(dusit);
 
 		} catch (final Throwable oops) {
 			result = new ModelAndView("redirect:/#");
@@ -96,15 +96,15 @@ public class QuoletAdministratorController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/show", method = RequestMethod.GET)
-	public ModelAndView show(@RequestParam final int quoletId) {
+	public ModelAndView show(@RequestParam final int dusitId) {
 
 		ModelAndView result;
 
 		try {
-			Quolet quolet = this.quoletService.findOne(quoletId);
+			Dusit dusit = this.dusitService.findOne(dusitId);
 
-			result = new ModelAndView("quolet/show");
-			result.addObject("quolet",quolet);
+			result = new ModelAndView("dusit/show");
+			result.addObject("dusit",dusit);
 			
 			final Locale l = LocaleContextHolder.getLocale();
 			final String lang = l.getLanguage();
@@ -117,32 +117,32 @@ public class QuoletAdministratorController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params="save")
-	public ModelAndView save(@ModelAttribute("quolet") Quolet quolet, final BindingResult binding) {
+	public ModelAndView save(@ModelAttribute("dusit") Dusit dusit, final BindingResult binding) {
 
 		ModelAndView result;
-		quolet = this.quoletService.reconstruct(quolet, binding);
+		dusit = this.dusitService.reconstruct(dusit, binding);
 
 		if (binding.hasErrors()) {
-			result = this.createEditModelAndView(quolet);
+			result = this.createEditModelAndView(dusit);
 		} else
 			try {
-				Quolet saved = this.quoletService.save(quolet);
-				result = new ModelAndView("redirect:/quolet/administrator/show.do?quoletId="+saved.getId());
+				Dusit saved = this.dusitService.save(dusit);
+				result = new ModelAndView("redirect:/dusit/administrator/show.do?dusitId="+saved.getId());
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(quolet, "quolet.commit.error");
+				result = this.createEditModelAndView(dusit, "dusit.commit.error");
 			}
 		return result;
 
 	}
 
 	@RequestMapping(value = "edit", method = RequestMethod.POST, params = "delete")
-	public ModelAndView delete(final Quolet quolet) {
+	public ModelAndView delete(final Dusit dusit) {
 		ModelAndView result;
 		try {
-			this.quoletService.delete(quolet);
-			result = new ModelAndView("redirect:/quolet/administrator/list.do");
+			this.dusitService.delete(dusit);
+			result = new ModelAndView("redirect:/dusit/administrator/list.do");
 		} catch (final Throwable oops) {
-			result = this.createEditModelAndView(quolet, "quolet.commit.error");
+			result = this.createEditModelAndView(dusit, "dusit.commit.error");
 		}
 		return result;
 	}
@@ -151,18 +151,18 @@ public class QuoletAdministratorController extends AbstractController {
 	// ############################### Métodos auxiliares ###################################
 	// ######################################################################################
 
-	protected ModelAndView createEditModelAndView(Quolet quolet) {
-		return this.createEditModelAndView(quolet, null);
+	protected ModelAndView createEditModelAndView(Dusit dusit) {
+		return this.createEditModelAndView(dusit, null);
 	}
 
-	protected ModelAndView createEditModelAndView(Quolet quolet, String messageCode) {
+	protected ModelAndView createEditModelAndView(Dusit dusit, String messageCode) {
 		ModelAndView result;
-		if (quolet.getId() == 0) {
-			result = new ModelAndView("quolet/create");
+		if (dusit.getId() == 0) {
+			result = new ModelAndView("dusit/create");
 		} else {
-			result = new ModelAndView("quolet/edit");
+			result = new ModelAndView("dusit/edit");
 		}
-		result.addObject("quolet", quolet);
+		result.addObject("dusit", dusit);
 		result.addObject("message", messageCode);
 		
 		Collection<Conference> conferences = this.conferenceService.findConferencesFinal();

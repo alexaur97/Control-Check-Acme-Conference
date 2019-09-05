@@ -11,21 +11,22 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.URL;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Quolet extends DomainEntity {
+public class Dusit extends DomainEntity {
 
 	private Conference			conference;
 	private Administrator		administrator;
 
 	private String				ticker;
 	private Date				publicationMoment;
-	private String				x1;
-	private String				x2;
-	private String				x3;
+	private String				body;
+	private String				picture;
 	private String 				mode;
 	
 	
@@ -69,30 +70,22 @@ public class Quolet extends DomainEntity {
 	}
 	
 	@NotBlank
-	public String getX1() {
-		return x1;
+	@Size(max=251)
+	public String getBody() {
+		return body;
 	}
 	
-	public void setX1(String x1) {
-		this.x1 = x1;
+	public void setBody(String body) {
+		this.body = body;
 	}
 	
-	@NotBlank
-	public String getX2() {
-		return x2;
+	@URL
+	public String getPicture() {
+		return picture;
 	}
 	
-	public void setX2(String x2) {
-		this.x2 = x2;
-	}
-	
-	@NotBlank
-	public String getX3() {
-		return x3;
-	}
-	
-	public void setX3(String x3) {
-		this.x3 = x3;
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 	
 	@NotBlank

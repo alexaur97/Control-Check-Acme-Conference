@@ -50,7 +50,7 @@
 		<value>/views/report/messages</value>
 		
 		<!-- controlcheck -->
-		<value>/views/quolet/messages</value>
+		<value>/views/dusit/messages</value>
 		
 	</util:list>
 

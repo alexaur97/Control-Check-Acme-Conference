@@ -12,15 +12,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import domain.Administrator;
-import domain.Quolet;
-import repositories.QuoletRepository;
+import domain.Dusit;
+import repositories.DusitRepository;
 
 @Service
 @Transactional
-public class QuoletService {
+public class DusitService {
 
 	@Autowired
-	private QuoletRepository quoletRepository;
+	private DusitRepository dusitRepository;
 
 	@Autowired
 	private AdministratorService administratorService;
@@ -28,23 +28,23 @@ public class QuoletService {
 	@Autowired
 	private Validator			validator;
 
-	public Quolet create() {
-		return new Quolet();
+	public Dusit create() {
+		return new Dusit();
 	}
 
-	public Collection<Quolet> findQuoletsByPrincipal() {
+	public Collection<Dusit> findDusitsByPrincipal() {
 		Administrator principal = this.administratorService.findByPrincipal();
-		return this.quoletRepository.findQuoletsByPrincipal(principal.getId());
+		return this.dusitRepository.findDusitsByPrincipal(principal.getId());
 	}
 
-	public Quolet findOne(int quoletId) {
-		return this.quoletRepository.findOne(quoletId);
+	public Dusit findOne(int dusitId) {
+		return this.dusitRepository.findOne(dusitId);
 	}
 
-	public Quolet reconstruct(Quolet quolet, BindingResult binding) {
-		Quolet result = quolet;
-		if (quolet.getId() != 0) {
-			Quolet ret = this.quoletRepository.findOne(quolet.getId());
+	public Dusit reconstruct(Dusit dusit, BindingResult binding) {
+		Dusit result = dusit;
+		if (dusit.getId() != 0) {
+			Dusit ret = this.dusitRepository.findOne(dusit.getId());
 			Assert.isTrue(ret.getMode().equals("DRAFT"));
 			
 			result.setPublicationMoment(ret.getPublicationMoment());
@@ -69,6 +69,20 @@ public class QuoletService {
 		final Integer month = moment.getMonth() + 1;
 		final Integer day = moment.getDate();
 
+		int numero1 = (int) (Math.random() * 9) + 1;
+		int numero2 = (int) (Math.random() * 9) + 1;
+		int numero3 = (int) (Math.random() * 9) + 1;
+		int numero4 = (int) (Math.random() * 9) + 1;
+		int numero5 = (int) (Math.random() * 9) + 1;
+		int numero6 = (int) (Math.random() * 9) + 1;
+		
+		String n1 = numero1+"";
+		String n2 = numero2+"";
+		String n3 = numero3+"";
+		String n4 = numero4+"";
+		String n5 = numero5+"";
+		String n6 = numero6+"";
+		
 		String yy = "" + year;
 		String mm = "" + month;
 		String dd = "" + day;
@@ -80,46 +94,46 @@ public class QuoletService {
 			mm = "0" + mm;
 		if (day < 10)
 			dd = "0" + dd;
-		final String result = yy + mm + dd;
+		final String result = n1+n2+n3+n4+n5+n6+":"+yy+":"+mm +":"+ dd;
 		return result;
 	}
 
-	public Quolet save(Quolet quolet) {
+	public Dusit save(Dusit dusit) {
 		this.administratorService.findByPrincipal();
-		return this.quoletRepository.save(quolet);
+		return this.dusitRepository.save(dusit);
 	}
 
-	public void delete(Quolet quolet) {
+	public void delete(Dusit dusit) {
 		this.administratorService.findByPrincipal();
-		this.quoletRepository.delete(quolet);
+		this.dusitRepository.delete(dusit);
 	}
 
-	public Collection<Quolet> findAll() {
-		return this.quoletRepository.findAll();
+	public Collection<Dusit> findAll() {
+		return this.dusitRepository.findAll();
 	}
 
-	public Collection<Quolet> findQuoletsFinal() {
-		return this.quoletRepository.findQuoletsFinal();
+	public Collection<Dusit> findDusitsFinal() {
+		return this.dusitRepository.findDusitsFinal();
 	}
 
-	public Collection<Quolet> findQuoletsByConference(int conferenceId) {
-		return this.quoletRepository.findQuoletsByConference(conferenceId);
+	public Collection<Dusit> findDusitsByConference(int conferenceId) {
+		return this.dusitRepository.findDusitsByConference(conferenceId);
 	}
 
-	public Collection<Double> statsNumberQuolet() {
-		final Collection<Double> result = this.quoletRepository.statsNumberQuolets();
+	public Collection<Double> statsNumberDusit() {
+		final Collection<Double> result = this.dusitRepository.statsNumberDusits();
 		Assert.notNull(result);
 		return result;
 	}
 
 	public Double publishedRatio() {
-		final Double result = this.quoletRepository.publishedRatio();
+		final Double result = this.dusitRepository.publishedRatio();
 		Assert.notNull(result);
 		return result;
 	}
 
 	public Double unpublishedRatio() {
-		final Double result = this.quoletRepository.unpublishedRatio();
+		final Double result = this.dusitRepository.unpublishedRatio();
 		Assert.notNull(result);
 		return result;
 	}

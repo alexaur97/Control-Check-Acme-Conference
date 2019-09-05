@@ -54,47 +54,47 @@
 <!-- controlcheck -->
 
 <h4>
-	<spring:message code="conference.quolets" />
+	<spring:message code="conference.dusits" />
 </h4>
 
-<display:table pagesize="5" name="quolets" id="quolet"
+<display:table pagesize="5" name="dusits" id="dusit"
 	requestURI="${requestURI}" class="displaytag table">
 	
-	<jstl:if test="${((date2-quolet.publicationMoment.time)/86400000)<30}">
+	<jstl:if test="${((date2-dusit.publicationMoment.time)/86400000)<30}">
 	
-		<display:column style="color:red;" titleKey="quolet.ticker" property="ticker" />
-		<display:column style="color:red;" titleKey="quolet.mode" property="mode" />
-		<display:column style="color:red;" titleKey="quolet.x1" property="x1" />
-		<display:column titleKey="quolet.show">
+		<display:column style="color:DarkOrange;" titleKey="dusit.ticker" property="ticker" />
+		<display:column style="color:DarkOrange;" titleKey="dusit.mode" property="mode" />
+		<display:column maxLength="50" style="color:DarkOrange;" titleKey="dusit.body" property="body" />
+		<display:column titleKey="dusit.show">
 			<acme:cancel
-				url="/quolet/show.do?quoletId=${quolet.id}"
-				code="quolet.show" />
+				url="/dusit/show.do?dusitId=${dusit.id}"
+				code="dusit.show" />
 		</display:column>
 	
 	</jstl:if>
 	
-	<jstl:if test="${((date2-quolet.publicationMoment.time)/86400000)>30 and ((date2-quolet.publicationMoment.time)/86400000)<60}">
+	<jstl:if test="${((date2-dusit.publicationMoment.time)/86400000)>30 and ((date2-dusit.publicationMoment.time)/86400000)<60}">
 	
-		<display:column style="color:blue;" titleKey="quolet.ticker" property="ticker" />
-		<display:column style="color:blue;" titleKey="quolet.mode" property="mode" />
-		<display:column style="color:blue;" titleKey="quolet.x1" property="x1" />
-		<display:column titleKey="quolet.show">
+		<display:column style="color:Pink;" titleKey="dusit.ticker" property="ticker" />
+		<display:column style="color:Pink;" titleKey="dusit.mode" property="mode" />
+		<display:column maxLength="50" style="color:Pink;" titleKey="dusit.body" property="body" />
+		<display:column titleKey="dusit.show">
 			<acme:cancel
-				url="/quolet/show.do?quoletId=${quolet.id}"
-				code="quolet.show" />
+				url="/dusit/show.do?dusitId=${dusit.id}"
+				code="dusit.show" />
 		</display:column>
 	
 	</jstl:if>
 	
-	<jstl:if test="${((date2-quolet.publicationMoment.time)/86400000)>60}">
+	<jstl:if test="${((date2-dusit.publicationMoment.time)/86400000)>60}">
 	
-		<display:column style="color:green;" titleKey="quolet.ticker" property="ticker" />
-		<display:column style="color:green;" titleKey="quolet.mode" property="mode" />
-		<display:column style="color:green;" titleKey="quolet.x1" property="x1" />
-		<display:column titleKey="quolet.show">
+		<display:column style="color:AliceBlue;" titleKey="dusit.ticker" property="ticker" />
+		<display:column style="color:AliceBlue;" titleKey="dusit.mode" property="mode" />
+		<display:column maxLength="50" style="color:AliceBlue;" titleKey="dusit.body" property="body" />
+		<display:column titleKey="dusit.show">
 			<acme:cancel
-				url="/quolet/show.do?quoletId=${quolet.id}"
-				code="quolet.show" />
+				url="/dusit/show.do?dusitId=${dusit.id}"
+				code="dusit.show" />
 		</display:column>
 	
 	</jstl:if>

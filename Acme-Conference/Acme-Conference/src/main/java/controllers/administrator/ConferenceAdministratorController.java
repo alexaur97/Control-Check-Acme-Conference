@@ -19,10 +19,12 @@ import org.springframework.web.servlet.ModelAndView;
 import services.AdministratorService;
 import services.CategoryService;
 import services.ConferenceService;
+import services.DusitService;
 import services.SubmissionService;
 import controllers.AbstractController;
 import domain.Category;
 import domain.Conference;
+import domain.Dusit;
 import domain.Submission;
 
 @Controller
@@ -30,17 +32,19 @@ import domain.Submission;
 public class ConferenceAdministratorController extends AbstractController {
 
 	@Autowired
-	private AdministratorService	administratorService;
+	private AdministratorService administratorService;
 
 	@Autowired
-	private ConferenceService		conferenceService;
+	private ConferenceService conferenceService;
 
 	@Autowired
-	private SubmissionService		submissionService;
+	private SubmissionService submissionService;
 
 	@Autowired
-	private CategoryService			categoryService;
+	private CategoryService categoryService;
 
+	@Autowired
+	private DusitService dusitService;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
@@ -49,7 +53,8 @@ public class ConferenceAdministratorController extends AbstractController {
 			this.administratorService.findByPrincipal();
 
 			final Collection<Conference> conferencesSubmission = this.conferenceService.findSubmissionLastFiveDays();
-			final Collection<Conference> conferencesNotification = this.conferenceService.findNotificationLessFiveDays();
+			final Collection<Conference> conferencesNotification = this.conferenceService
+					.findNotificationLessFiveDays();
 			final Collection<Conference> conferencesCameraReady = this.conferenceService.findCameraReadyLessFiveDays();
 			final Collection<Conference> conferencesStartDate = this.conferenceService.findStartDateLessFiveDays();
 			final Collection<Conference> conferencesDraft = this.conferenceService.conferencesDraft();
@@ -77,7 +82,8 @@ public class ConferenceAdministratorController extends AbstractController {
 			final Conference conference = this.conferenceService.findOne(conferenceId);
 			result = new ModelAndView("conference/show");
 
-			final Collection<Submission> allSubmissions = this.submissionService.findSubmissionsByConference(conference);
+			final Collection<Submission> allSubmissions = this.submissionService
+					.findSubmissionsByConference(conference);
 			final Date date = new Date();
 			final Boolean submissions = !allSubmissions.isEmpty() && conference.getSubmissionDeadline().before(date);
 			result.addObject("submissions", submissions);
@@ -85,8 +91,10 @@ public class ConferenceAdministratorController extends AbstractController {
 			final Locale l = LocaleContextHolder.getLocale();
 			final String lang = l.getLanguage();
 
-			final Collection<Submission> acceptedSubmissions = this.submissionService.findAcceptedSubmissionsByConference(conference);
-			final Collection<Submission> rejectedSubmissions = this.submissionService.findRejectedSubmissionsByConference(conference);
+			final Collection<Submission> acceptedSubmissions = this.submissionService
+					.findAcceptedSubmissionsByConference(conference);
+			final Collection<Submission> rejectedSubmissions = this.submissionService
+					.findRejectedSubmissionsByConference(conference);
 
 			final Boolean bool = acceptedSubmissions.size() + rejectedSubmissions.size() > 0;
 
@@ -96,6 +104,20 @@ public class ConferenceAdministratorController extends AbstractController {
 			result.addObject("rejectedSubmissions", rejectedSubmissions);
 			result.addObject("bool", bool);
 			result.addObject("lang", lang);
+
+			// controlcheck ------------------------------------------------------
+
+			Collection<Dusit> dusits = this.dusitService.findDusitsByConference(conferenceId);
+			result.addObject("dusits", dusits);
+			result.addObject("requestURI", "conference/show.do");
+
+			final Date fecha = new Date();
+			final Long date2 = fecha.getTime();
+
+			result.addObject("date2", date2);
+			result.addObject("lang", lang);
+
+			// -------------------------------------------------------------------
 
 		} catch (final Exception e) {
 			result = new ModelAndView("redirect:/#");
@@ -137,6 +159,7 @@ public class ConferenceAdministratorController extends AbstractController {
 
 		return result;
 	}
+
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@RequestParam("conferenceId") final int conferenceId) {
 		ModelAndView result;
@@ -155,6 +178,7 @@ public class ConferenceAdministratorController extends AbstractController {
 
 		return result;
 	}
+
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView save(@ModelAttribute("conference") Conference conference, final BindingResult binding) {
 		ModelAndView res;
@@ -195,6 +219,7 @@ public class ConferenceAdministratorController extends AbstractController {
 	protected ModelAndView createEditModelAndView(final Conference conference) {
 		return this.createEditModelAndView(conference, null);
 	}
+
 	protected ModelAndView createEditModelAndView(final Conference conference, final String messageCode) {
 		this.administratorService.findByPrincipal();
 		final ModelAndView res;

@@ -28,10 +28,10 @@
 		<!-- controlcheck -->
 
 		<security:intercept-url
-			pattern="/quolet/show.do" access="permitAll" />
+			pattern="/dusit/show.do" access="permitAll" />
 
 		<security:intercept-url
-			pattern="/quolet/administrator/**" access="hasRole('ADMINISTRATOR')" />
+			pattern="/dusit/administrator/**" access="hasRole('ADMINISTRATOR')" />
 
 		<!-- ............ -->
 

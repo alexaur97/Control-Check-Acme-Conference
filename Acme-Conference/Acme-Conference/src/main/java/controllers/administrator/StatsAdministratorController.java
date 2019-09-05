@@ -15,7 +15,7 @@ import services.ConferenceService;
 import services.PanelCommentService;
 import services.PaperService;
 import services.PresentationCommentService;
-import services.QuoletService;
+import services.DusitService;
 import services.RegistrationService;
 import services.SubmissionService;
 import services.TutorialCommentService;
@@ -50,7 +50,7 @@ public class StatsAdministratorController extends AbstractController {
 	private PaperService				paperService;
 	
 	@Autowired
-	private QuoletService				quoletService;
+	private DusitService				dusitService;
 
 
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
@@ -83,13 +83,13 @@ public class StatsAdministratorController extends AbstractController {
 			
 			
 			
-			final Collection<Double> numberQuolets = this.quoletService.statsNumberQuolet();
-			final Double publishedQuolets = this.quoletService.publishedRatio();
-			final Double unpublishedQuolets = this.quoletService.unpublishedRatio();
+			final Collection<Double> numberDusits = this.dusitService.statsNumberDusit();
+			final Double publishedDusits = this.dusitService.publishedRatio();
+			final Double unpublishedDusits = this.dusitService.unpublishedRatio();
 			
-			result.addObject("numberQuolets", numberQuolets);
-			result.addObject("publishedQuolets", publishedQuolets);
-			result.addObject("unpublishedQuolets", unpublishedQuolets);
+			result.addObject("numberDusits", numberDusits);
+			result.addObject("publishedDusits", publishedDusits);
+			result.addObject("unpublishedDusits", unpublishedDusits);
 			
 		} catch (final Exception e) {
 			result = new ModelAndView("redirect:/#");

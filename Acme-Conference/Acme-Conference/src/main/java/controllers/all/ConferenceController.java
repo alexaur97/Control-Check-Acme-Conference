@@ -16,13 +16,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.ConferenceCommentService;
 import services.ConferenceService;
-import services.QuoletService;
+import services.DusitService;
 import services.SponsorshipService;
 import services.SubmissionService;
 import controllers.AbstractController;
 import domain.Conference;
 import domain.ConferenceComment;
-import domain.Quolet;
+import domain.Dusit;
 import domain.Sponsorship;
 import domain.Submission;
 
@@ -39,7 +39,7 @@ public class ConferenceController extends AbstractController {
 	@Autowired
 	private SponsorshipService sponsorshipService;
 	@Autowired
-	private QuoletService QuoletService;
+	private DusitService dusitService;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
@@ -127,9 +127,9 @@ public class ConferenceController extends AbstractController {
 			
 			// controlcheck ------------------------------------------------------
 			
-			Collection<Quolet> quolets = this.QuoletService.findQuoletsByConference(conferenceId);
-			result.addObject("quolets",quolets);
-			result.addObject("requestURI","conference/show.do"); // ### OJO A ESTO
+			Collection<Dusit> dusits = this.dusitService.findDusitsByConference(conferenceId);
+			result.addObject("dusits",dusits);
+			result.addObject("requestURI","conference/show.do"); 
 			
 			final Date fecha = new Date();
 			final Long date2 = fecha.getTime();

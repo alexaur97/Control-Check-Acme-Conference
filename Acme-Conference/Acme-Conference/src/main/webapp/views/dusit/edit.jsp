@@ -24,26 +24,25 @@
 
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<form:form action="quolet/administrator/edit.do" modelAttribute="quolet"
+<form:form action="dusit/administrator/edit.do" modelAttribute="dusit"
 	class="form-horizontal" method="post">
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	
-	<acme:select items="${conferences}" itemLabel="title" code="quolet.conference" path="conference"/>
-	<acme:textbox code="quolet.x1" path="x1" />
-	<acme:textbox code="quolet.x2" path="x2" />
-	<acme:textbox code="quolet.x3" path="x3" />
-	<spring:message code="quolet.mode" />
+	<acme:select items="${conferences}" itemLabel="title" code="dusit.conference" path="conference"/>
+	<acme:textbox code="dusit.body" path="body" />
+	<acme:textbox code="dusit.picture" path="picture" />
+	<spring:message code="dusit.mode" />
 	<form:select path="mode">
 		<form:option value="DRAFT" />
 		<form:option value="FINAL" />
 	</form:select>
 	<br/>
-	<acme:submit name="save" code="quolet.save" />
-	<jstl:if test="${quolet.id!=0}">
-	<acme:submit name="delete" code="quolet.delete" />
+	<acme:submit name="save" code="dusit.save" />
+	<jstl:if test="${dusit.id!=0}">
+	<acme:submit name="delete" code="dusit.delete" />
 	</jstl:if>
-	<acme:cancel url="/quolet/administrator/list.do" code="quolet.cancel" />
+	<acme:cancel url="/dusit/administrator/list.do" code="dusit.cancel" />
 	
 </form:form>
 
